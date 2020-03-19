@@ -1,0 +1,119 @@
+*{
+  margin: auto;
+}
+
+table th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    background: rgb(106, 144, 161);
+    
+  }
+
+  table {
+    table-layout: fixed ;
+    border-collapse: collapse;
+
+  }
+
+  
+  h1, h2{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: rgb(8, 100, 36);
+  }
+
+.smaily, .life{
+  font-size: 40px;
+}
+td tbody{
+  font-size: 12px;
+}
+td  {
+  width: 30px;
+  height: 20px;
+  max-width: 30px;
+  max-height: 20px;
+  color:#444;
+  border:1px solid #CCC;
+  background:#DDD;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  cursor:pointer;
+  vertical-align:middle;
+  text-align: center;
+}
+
+td:hover {
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+/* cliced to treat */
+.clicked{
+  border:1px solid rgb(113, 192, 192);
+  color:#444;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+.gameOver{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px red;
+}
+
+
+.display{
+  display: block;
+}
+
+.hint{
+  border-color: red;
+}
+
+.btHint{
+  border: none;
+  background: none;
+}
+
+thead tr{
+  width: 22px;
+  height: 22px;
+  max-width: 22px;
+  max-height: 22px;
+  color:#444;
+  border:1px solid #CCC;
+  background:#DDD;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  cursor:pointer;
+  vertical-align:middle;
+}
+
+.conteiner{
+  text-align: center;
+  width: 100%;
+}
+
+.clbtHint{
+  float: left;
+}
+
+.btHint{
+  font-size: 40px;
+}
+
+.life{
+  float: right;
+}
+
+/* 
+body {
+  background-image: url("../pic/background.jpg");
+} 
+ */
+/* body {
+  background-image: url("https://banner2.cleanpng.com/20190503/jbp/kisspng-minesweeper-classic-mines-mine-sweeper-mono-micr-minesweeper-x-by-oleg-adamov-5ccc30a4c2c3f6.3183695315568856687978.jpg");
+} */
+
+
+

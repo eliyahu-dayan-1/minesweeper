@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mine sweeping</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body onload="initGame(4,2)" oncontextmenu="return false" ;>
+
+    <div class="conteiner">
+        <h1 class="header">mine sweeping</h1>
+        <div class="clbtHint"> </div>
+
+        <div class="life"></div>
+
+        <div id="timer">
+            <h3> Time passed: 00:00 </h3>
+        </div>
+
+        <!-- TODO: SCORE FUNTION -->
+        <div class="score">score: 0</div>
+
+
+        <!-- TODO: bigger element in the minddel of the screen -->
+        <div class="centerBoard">
+            <div class="gameOver"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="100%">
+                            <div class="smaily" onclick="initGame(gLevel.SIZE, gLevel.MINES)">smaily</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="100%">
+                            <form action="">
+                                <input type="radio" name="gender" value="male" checked="checked"
+                                    onclick="initGame(4, 2)">Beginner
+                                <input type="radio" name="gender" value="female" onclick="initGame(8,12)">Medium
+                                <input type="radio" name="gender" value="other" onclick="initGame(12, 30)"> Expert
+                            </form>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="board"></tbody>
+            </table>
+
+        </div>
+
+        <script src="lib/utils.js"></script>
+        <script src="js/game.js"></script>
+    </div>
+</body>
+
+</html>
