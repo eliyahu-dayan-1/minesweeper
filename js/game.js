@@ -126,7 +126,9 @@ function checkVictory(cell) {
     if (gGame.shownCount === gLevel.SIZE ** 2 && gGame.flagCount === gLevel.MINES) {
         gGame.isVictory = true;
         renderVictory();
+        saveTheBestTime()
         resetTime()
+
     }
 }
 
@@ -191,11 +193,10 @@ function stepOnMime(cell) {
     renderBoard(gBoard);
     gGame.lifeCnt--;
     renderLife();
-//gameOver
+    //gameOver
     if (!gGame.lifeCnt) {
         renderGameOver()
         resetTime()
-
     } else {
         setTimeout(function () {
             cell.isShown = false;
@@ -295,10 +296,17 @@ function renderTime(firstTime) {
     var timeNow = Date.now() - firstTime;
     var minutes = Math.floor(timeNow / 60000);
     var seconds = ((timeNow % 60000) / 1000).toFixed(0);
-    var curTime = (minutes + ":" + (seconds < 10 ? '0' : '') + seconds);
-    var displayNum = document.getElementById("timer")
-    displayNum.innerHTML = '<h3> Time passed: ' + curTime + '</h3>';
+    var timeCnt =(minutes + ":" + (seconds < 10 ? '0' : '') + seconds);
+    renderTimer(timeCnt)
+    // var displayNum = document.getElementById("timer")
+    // displayNum.innerHTML = '<h3> Time passed: ' + curTime + '</h3>';
 }
+
+function renderTimer(timer) {
+    var displayNum = document.getElementById("timer")
+    displayNum.innerHTML = '<h3> Time passed: ' + timer + '</h3>';
+}
+
 
 //the function render the life status
 function renderLife() {
@@ -318,7 +326,7 @@ function renderHintBt() {
     var presentStr = ""
     for (var i = 1; i <= 3; i++) {
         var innerTxt = (i <= gGame.hintCount) ? "🎁" : "⬇️";
-        var textFunc = (i <= gGame.hintCount) ? 'onclick="chooseHint()"' : "";
+        var textFunc = (i <= gGame.hintCount) ? 'onclick="renderHintMode()"' : "";
         presentStr += `<button class="btHint" ${textFunc}>${innerTxt}</button>`
     }
     document.querySelector('.clbtHint').innerHTML = presentStr;
@@ -385,4 +393,29 @@ function setMinesNegsCountForMat(board) {
             if (!board[i][j].isMine) setMinesNegsCount(i, j);
         }
     }
+}
+
+/* the fucntion save the best time of victory in the game */
+function saveTheBestTime() {
+    var timeOfGame = Date.now() - gfirstTime;
+    var bestTime = parseInt(localStorage.getItem("bestTime"))
+    
+    if (timeOfGame < bestTime || bestTime === 0) {
+        bestTime = timeOfGame
+        localStorage.setItem("bestTime", bestTime);
+        var BestTimeInClockFormat = transferUnixTimeToClock(bestTime)
+        renderBestTime(BestTimeInClockFormat)
+    }
+}
+
+/* the fucntion get unix time and transfer it to clock templte */
+function transferUnixTimeToClock(unixTime) {
+    var minutes = Math.floor(unixTime / 60000);
+    var seconds = ((unixTime % 60000) / 1000).toFixed(0);
+    return (minutes + ":" + (seconds < 10 ? '0' : '') + seconds);
+}
+
+/* the function render the best */
+function renderBestTime(TimeInClockFormat) {
+    document.querySelector('.bestTime').innerHTML = "Best Time" + TimeInClockFormat;
 }
