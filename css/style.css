@@ -4,17 +4,30 @@
 
 table th, td {
     padding: 8px;
-    border: 1px solid #ddd;
-    background: rgb(106, 144, 161);
+    background:  rgb(168, 167, 167);
     
   }
 
   table {
     table-layout: fixed ;
     border-collapse: collapse;
-
   }
 
+td tbody{
+  font-size: 12px;
+}
+td  {
+  border: 1px solid rgba(212, 208, 208, 0.911);
+  width: 30px;
+  height: 20px;
+  max-width: 30px;
+  max-height: 20px;
+  color:#444;
+  box-shadow: 0 0 5px -1px rgba(110, 105, 106, 0.2);
+  cursor:pointer;
+  vertical-align:middle;
+  text-align: center;
+}
   
   h1, h2{
     font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -24,32 +37,11 @@ table th, td {
 .smaily, .life{
   font-size: 40px;
 }
-td tbody{
-  font-size: 12px;
-}
-td  {
-  width: 30px;
-  height: 20px;
-  max-width: 30px;
-  max-height: 20px;
-  color:#444;
-  border:1px solid #CCC;
-  background:#DDD;
-  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-  cursor:pointer;
-  vertical-align:middle;
-  text-align: center;
-}
 
 td:hover {
   box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
-/* cliced to treat */
-.clicked{
-  border:1px solid rgb(113, 192, 192);
-  color:#444;
-  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
-}
+
 
 .gameOver{
   display: none;
@@ -106,11 +98,18 @@ thead tr{
   float: right;
 }
 
-/* 
+
 body {
   background-image: url("../pic/background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-bottom:  5px solid black;
+  height: 100vh;
 } 
- */
+
+
+
 /* body {
   background-image: url("https://banner2.cleanpng.com/20190503/jbp/kisspng-minesweeper-classic-mines-mine-sweeper-mono-micr-minesweeper-x-by-oleg-adamov-5ccc30a4c2c3f6.3183695315568856687978.jpg");
 } */

@@ -59,11 +59,14 @@ function resetGame() {
     gEmptyNeighborCells = []
     gfirstTime = 0;
     gMines = []
+    
 
     gElGameOver.classList.remove('display')
     resetTime()
     renderLife()
-    renderHintBt()
+    renderHintBt() 
+    var bestTime = parseInt(localStorage.getItem("bestTime"))
+    renderBestTime(bestTime);
 }
 
 /* the function is reset the time */
@@ -126,7 +129,7 @@ function checkVictory(cell) {
     if (gGame.shownCount === gLevel.SIZE ** 2 && gGame.flagCount === gLevel.MINES) {
         gGame.isVictory = true;
         renderVictory();
-        saveTheBestTime()
+        getTheBestTime()
         resetTime()
 
     }
@@ -149,10 +152,8 @@ function startGame(cellClickI, cellClickJ) {
 of the mouse (right or left) */
 function cellMarked(elMouse, elCell) {
     if (!gGame.isOn) return;
-
     elCell.classList.add('clicked');
     var cell = gBoard[elCell.dataset.i][elCell.dataset.j]
-
     //if there is a flag yet the function desaper him and return
     if (gGame.isHint) {
         getHintToUser(cell.location.i, cell.location.j);
@@ -220,6 +221,8 @@ function renderGameOver() {
 
 //the funtion render the mode of hint, when the user can reval a cell and now what it and it neibors have/
 function renderHintMode() {
+
+    if(!gGame.isFirstClick) return;
     var cells = document.querySelectorAll('tbody td');
     for (var i = 0; i < cells.length; i++) {
         cells[i].classList.add('hint')
@@ -396,16 +399,15 @@ function setMinesNegsCountForMat(board) {
 }
 
 /* the fucntion save the best time of victory in the game */
-function saveTheBestTime() {
+function getTheBestTime() {
     var timeOfGame = Date.now() - gfirstTime;
     var bestTime = parseInt(localStorage.getItem("bestTime"))
     
-    if (timeOfGame < bestTime || bestTime === 0) {
+    if (timeOfGame < bestTime || !bestTime) {
         bestTime = timeOfGame
         localStorage.setItem("bestTime", bestTime);
-        var BestTimeInClockFormat = transferUnixTimeToClock(bestTime)
-        renderBestTime(BestTimeInClockFormat)
     }
+    renderBestTime(bestTime);
 }
 
 /* the fucntion get unix time and transfer it to clock templte */
@@ -416,6 +418,8 @@ function transferUnixTimeToClock(unixTime) {
 }
 
 /* the function render the best */
-function renderBestTime(TimeInClockFormat) {
-    document.querySelector('.bestTime').innerHTML = "Best Time" + TimeInClockFormat;
+function renderBestTime(unixTime) {
+    var BestTimeInClockFormat = (unixTime)? transferUnixTimeToClock(unixTime): 0;
+    var bestTime = (BestTimeInClockFormat)? BestTimeInClockFormat: "00:00"
+    document.querySelector('.bestTime').innerHTML = "Best Time: " + bestTime;
 }
